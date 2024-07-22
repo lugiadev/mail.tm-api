@@ -118,33 +118,33 @@ MailTM.setConfig({
 #### Get a cached email
 
 ```js
-console.log(account.emails.cache.get('MAIL_ID'));
+console.log(account.mails.cache.get('MAIL_ID'));
 // { id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ... }
 ```
 
-Note: account.emails.cache is a Map object, you can use all Map methods
+Note: account.mails.cache is a Map object, you can use all Map methods
 
 #### Fetch a email
 
 ```js
-console.log(await account.emails.fetch('MAIL_ID'));
+console.log(await account.mails.fetch('MAIL_ID'));
 // { id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ... }
 
 // Or
 
-console.log(await account.emails.cache.get('MAIL_ID').fetch());
+console.log(await account.mails.cache.get('MAIL_ID').fetch());
 // { id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ... }
 ```
 
 #### Fetch all emails
 
 ```js
-console.log(await account.emails.fetchAll());
+console.log(await account.mails.fetchAll());
 // [{ id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ... }, ...]
 
 // Fetch a specific page
 
-console.log(await account.emails.fetchAll(2));
+console.log(await account.mails.fetchAll(2));
 // [{ id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ... }, ...]
 ```
 
@@ -160,24 +160,24 @@ account.on('newMail', email => {
 #### Delete a email
 
 ```js
-console.log(await account.emails.cache.get('MAIL_ID').delete());
+console.log(await account.mails.cache.get('MAIL_ID').delete());
 // { id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ..., isDeleted: true }
 
 // Or
 
-console.log(await (await account.emails.fetch('MAIL_ID')).delete());
+console.log(await (await account.mails.fetch('MAIL_ID')).delete());
 // { id: 'MAIL_ID', accountId: 'ACCOUNT_ID', ..., isDeleted: true }
 ```
 
 #### Download a email
 
 ```js
-console.log(await account.emails.cache.get('MAIL_ID').download('PATH.eml'));
+console.log(await account.mails.cache.get('MAIL_ID').download('PATH.eml'));
 // PATH.eml
 
 // Or
 
-console.log(await (await account.emails.fetch('MAIL_ID')).download('PATH.eml'));
+console.log(await (await account.mails.fetch('MAIL_ID')).download('PATH.eml'));
 // PATH.eml
 ```
 
