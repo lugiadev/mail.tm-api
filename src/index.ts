@@ -144,3 +144,5 @@ export function setConfig(config: IConfig): void {
   request(config.mailService, config.axiosOptions)
   Object.assign(CONFIG, config)
 }
+
+// :3
