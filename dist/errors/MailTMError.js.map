@@ -1,0 +1,1 @@
+{"version":3,"file":"MailTMError.js","sourceRoot":"","sources":["../../src/errors/MailTMError.ts"],"names":[],"mappings":";;AAAA,MAAqB,WAAY,SAAQ,KAAK;IAC5C,YAAoB,OAAgB;QAClC,KAAK,CAAC,OAAO,CAAC,CAAA;QAEd,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC,WAAW,CAAC,IAAI,CAAA;IACnC,CAAC;CACF;AAND,8BAMC"}
