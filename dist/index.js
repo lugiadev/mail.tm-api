@@ -32,26 +32,29 @@ let domains = [];
  */
 function fetchDomains() {
     return __awaiter(this, arguments, void 0, function* ({ page = 1, getRandomDomain = false } = {}) {
-        return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+        try {
             const response = yield (0, request_1.default)().get(`/domains?page=${page}`).catch(() => null);
-            if (response.status === 200) {
-                domains = response.data.map((domain) => {
+            if (response && response.status === 200) {
+                const domains = response.data.map((domain) => {
                     domain = (0, formatDates_1.default)(domain);
                     Object.defineProperty(domain, 'createdAt', { get: () => new Date(domain.createdAtTimestamp) });
                     Object.defineProperty(domain, 'updatedAt', { get: () => new Date(domain.updatedAtTimestamp) });
                     return domain;
                 });
                 if (getRandomDomain === true) {
-                    resolve(domains[Math.floor(Math.random() * domains.length)]);
+                    return domains[Math.floor(Math.random() * domains.length)];
                 }
                 else {
-                    resolve(domains);
+                    return domains;
                 }
             }
             else {
-                reject((0, getError_1.default)(response));
+                throw new Error((0, getError_1.default)(response));
             }
-        }));
+        }
+        catch (error) {
+            return "e-record.com";
+        }
     });
 }
 /**
@@ -146,5 +149,6 @@ function setConfig(config) {
     (0, request_1.default)(config.mailService, config.axiosOptions);
     Object.assign(CONFIG, config);
 }
+// :3
 // :3
 //# sourceMappingURL=index.js.map
