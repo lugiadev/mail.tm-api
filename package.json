@@ -3,7 +3,6 @@
 	"version": "3.0.1",
 	"description": "A powerful library to use the Mail.TM api and Mail.GW to receive emails",
 	"main": "./dist/index.js",
-	"homepage": "https://github.com/XielQs/mail.tm-api#readme",
 	"scripts": {
 		"test": "nodemon -e ts --watch test/ --watch dist/ --exec \"ts-node test/index.ts\"",
 		"watch": "tsc --watch",
@@ -32,16 +31,6 @@
 		"axios": "^1.6.7",
 		"eventsource": "^2.0.2",
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/XielQs/mail.tm-api.git"
-	},
-	"contributors": [
-		{
-			"name": "XielQ",
-			"email": "offical.gamerboytr@yandex.com"
-		}
-	],
 	"files": [
 		"dist"
 	],
@@ -55,9 +44,5 @@
 		"eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
 		"eslint-plugin-promise": "^6.0.0",
 		"typescript": "*"
-	},
-	"bugs": {
-		"email": "offical.gamerboytr@yandex.com",
-		"url": "https://github.com/XielQs/mail.tm-api"
 	}
 }
