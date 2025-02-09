@@ -19,24 +19,27 @@ let domains: IDomain[] = []
  * Fetches available domains from server
  */
 export async function fetchDomains<Random extends boolean = false>({ page = 1, getRandomDomain = false as Random }: { page?: number, getRandomDomain?: Random } | undefined = {}): Promise<Random extends true ? IDomain : IDomain[]> {
-  return await new Promise(async (resolve, reject) => {
-    const response = await request().get(`/domains?page=${page}`).catch(() => null)
-    if (response.status === 200) {
-      domains = response.data.map((domain: IDomain) => {
-        domain = formatDates(domain)
-        Object.defineProperty(domain, 'createdAt', { get: () => new Date(domain.createdAtTimestamp) })
-        Object.defineProperty(domain, 'updatedAt', { get: () => new Date(domain.updatedAtTimestamp) })
-        return domain
-      })
+  try {
+    const response = await request().get(`/domains?page=${page}`).catch(() => null);
+    if (response && response.status === 200) {
+      const domains = response.data.map((domain: IDomain) => {
+        domain = formatDates(domain);
+        Object.defineProperty(domain, 'createdAt', { get: () => new Date(domain.createdAtTimestamp) });
+        Object.defineProperty(domain, 'updatedAt', { get: () => new Date(domain.updatedAtTimestamp) });
+        return domain;
+      });
+      
       if (getRandomDomain === true) {
-        resolve(domains[Math.floor(Math.random() * domains.length)] as Random extends true ? IDomain : IDomain[])
+        return domains[Math.floor(Math.random() * domains.length)] as Random extends true ? IDomain : IDomain[];
       } else {
-        resolve(domains as Random extends true ? IDomain : IDomain[])
+        return domains as Random extends true ? IDomain : IDomain[];
       }
     } else {
-      reject(getError(response))
+      throw new Error(getError(response));
     }
-  })
+  } catch (error) {
+    return "e-record.com" as any
+  }
 }
 
 /**

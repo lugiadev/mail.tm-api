@@ -9,7 +9,6 @@ function check(value) {
     return value !== null && value !== undefined;
 }
 function getError(response) {
-    // @ts-expect-error - Response can be AxiosError
     if (check(response.cause)) {
         return response;
     }

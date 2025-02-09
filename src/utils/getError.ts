@@ -6,7 +6,6 @@ function check (value: any): boolean {
 }
 
 export default function getError<Response extends AxiosResponse> (response: Response): MailTMError | Response {
-  // @ts-expect-error - Response can be AxiosError
   if (check(response.cause)) {
     return response
   } else if (check(response.data)) {
